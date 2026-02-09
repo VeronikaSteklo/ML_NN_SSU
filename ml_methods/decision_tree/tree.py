@@ -3,11 +3,11 @@ from collections import Counter
 
 class Node:
     def __init__(self, feature=None, threshold=None, left=None, right=None, *, value=None):
-        self.feature = feature      # Индекс признака, по которому делим
-        self.threshold = threshold  # Порог деления
-        self.left = left            # Левое поддерево
-        self.right = right          # Правое поддерево
-        self.value = value          # Значение в листе (если узел — лист)
+        self.feature = feature
+        self.threshold = threshold
+        self.left = left
+        self.right = right
+        self.value = value
 
     def is_leaf(self):
         return self.value is not None
@@ -32,7 +32,6 @@ class MyDecisionTree:
         feat_idxs = np.arange(n_features)
         best_feat, best_thresh = self._best_split(X, y, feat_idxs)
 
-        # Создаем дочерние узлы
         left_idxs, right_idxs = self._split(X[:, best_feat], best_thresh)
         left = self._grow_tree(X[left_idxs, :], y[left_idxs], depth + 1)
         right = self._grow_tree(X[right_idxs, :], y[right_idxs], depth + 1)
@@ -54,15 +53,12 @@ class MyDecisionTree:
         return split_idx, split_thresh
 
     def _information_gain(self, y, X_column, threshold):
-        # Родительская энтропия
         parent_entropy = self._entropy(y)
 
-        # Создаем детей
         left_idxs, right_idxs = self._split(X_column, threshold)
         if len(left_idxs) == 0 or len(right_idxs) == 0:
             return 0
 
-        # Средневзвешенная энтропия детей
         n = len(y)
         n_l, n_r = len(left_idxs), len(right_idxs)
         e_l, e_r = self._entropy(y[left_idxs]), self._entropy(y[right_idxs])
