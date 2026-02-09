@@ -23,6 +23,7 @@ class MyKMeans:
             self.centroids = new_centroids
 
         self.labels_ = labels
+        return self.labels_
 
     def predict(self, X):
         distances = np.linalg.norm(X[:, np.newaxis] - self.centroids, axis=2)
@@ -50,6 +51,8 @@ class MyDBSCAN:
             else:
                 self._expand_cluster(X, i, neighbors, cluster_id)
                 cluster_id += 1
+
+        return self.labels_
 
     def _expand_cluster(self, X, root_idx, neighbors, cluster_id):
         self.labels_[root_idx] = cluster_id

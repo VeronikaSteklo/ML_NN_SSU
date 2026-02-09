@@ -5,7 +5,7 @@ import numpy as np
 class MyKNN:
     """Ручной knn"""
 
-    def __init__(self, n_neighbors : int = 5, weights : str = "uniform", eps : float = 1e-6):
+    def __init__(self, n_neighbors: int = 5, weights: str = "uniform", eps: float = 1e-6):
         self.n_neighbors = n_neighbors
         self.weights = weights
         self.eps = eps
@@ -14,11 +14,14 @@ class MyKNN:
         self.X_train = X
         self.y_train = y
 
-    def distance(self, X):
-        return np.sqrt(np.sum((X - self.X_train) ** 2, axis=1))
+    def distance(self, X, metric: str = "euclidean"):
+        if metric == "euclidean":
+            return np.sqrt(np.sum((X - self.X_train) ** 2, axis=1))
+        elif metric == "manhattan":
+            return np.sum(np.abs(X - self.X_train), axis=1)
 
-    def predict_proba(self, X):
-        distances = self.distance(X)
+    def predict_proba(self, X, metric: str = "euclidean"):
+        distances = self.distance(X, metric="euclidean")
         k_indices = np.argsort(distances)[:self.n_neighbors]
 
         if self.weights == "distance":
@@ -36,7 +39,7 @@ class MyKNN:
         most_common = Counter(k_nearest_labels).most_common()
         return most_common[0][0]
 
-    def predict(self, X):
+    def predict(self, X, metric: str = "euclidean"):
         X = np.array(X)
-        prediction = [self.predict_proba(x) for x in X]
+        prediction = [self.predict_proba(x, metric) for x in X]
         return np.array(prediction)
