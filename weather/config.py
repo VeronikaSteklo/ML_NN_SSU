@@ -4,6 +4,10 @@ import numpy as np
 import torch
 
 DATA_PATH = "../data/weather_dataset"
+MY_DATA_TEST_PATH = "../data/test_weather"
+AUG_DATA_TEST_PATH = "../data/aug_weather"
+GEN_DATA_TEST_PATH = "../data/gen_weather"
+
 MODELS_SAVE_PATH = "../models/weather"
 IMAGE_SIZE = 128
 BATCH_SIZE = 64
