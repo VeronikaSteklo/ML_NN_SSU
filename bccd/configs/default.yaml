@@ -1,0 +1,12 @@
+DATA_ROOT: "../data/BCCD_VOC/BCCD"
+OUTPUT_DIR: "outputs"
+CLASSES: ["WBC", "RBC", "Platelets"]
+IMG_SIZE: 640
+BATCH_SIZE: 16
+NUM_EPOCHS: 50
+LR: 1e-4
+SEED: 42
+OOD:
+  BLUR_SIGMA: [1, 3]
+  NOISE_STD: [0.05, 0.15]
+  EXTERNAL_DIR: "data/ood_external"
