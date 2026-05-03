@@ -86,6 +86,16 @@ class CarvanaDataset(Dataset):
         return image, mask
 
 
+class CarvanaHRDataset(CarvanaDataset):
+    def __init__(self, images_dir, masks_dir, **kwargs):
+        kwargs['image_size'] = None
+        super().__init__(images_dir, masks_dir, **kwargs)
+
+    def __getitem__(self, idx):
+        image, mask = super().__getitem__(idx)
+
+        return image, mask
+
 def visualize_sample(dataset, idx=None, denormalize=True):
     if idx is None:
         idx = np.random.randint(0, len(dataset))

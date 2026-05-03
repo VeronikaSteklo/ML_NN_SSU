@@ -21,7 +21,7 @@ def get_best_metrics_table(histories):
 
     df = pd.DataFrame(data)
 
-    df = df.sort_values(by='Best Val IoU', ascending=False).reset_index(dist=True)
+    df = df.sort_values(by='Best Val IoU', ascending=False).reset_index()
 
     return df
 

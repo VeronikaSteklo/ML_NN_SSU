@@ -6,6 +6,7 @@ PROJECT_ROOT = CURRENT_FILE.parent.parent
 DATA_DIR = PROJECT_ROOT / "data" / "carvana-image-masking-challenge"
 
 TRAIN_IMAGES_DIR = DATA_DIR / "train"
+TRAIN_IMAGES_DIR_HQ = DATA_DIR / "train_hq"
 TRAIN_MASKS_DIR = DATA_DIR / "train_masks"
 TEST_IMAGES_DIR = DATA_DIR / "test"
 METADATA_FILE = DATA_DIR / "metadata.csv"
